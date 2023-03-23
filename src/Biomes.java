@@ -30,17 +30,15 @@ public class Biomes
     public static void navigate() {
         if (PlayerInv.compass == true) {
             System.out.println("Your current position is:");
-            System.out.println(PlayerPos.northCount + " North");
-            System.out.println(PlayerPos.westCount + " West");
-            System.out.println(PlayerPos.southCount + " South");
-            System.out.println(PlayerPos.eastCount + " East");
-        } else if (PlayerPos.northCount >=3){
+            System.out.println(PlayerPos.x + " X");
+            System.out.println(PlayerPos.y + " Y");
+        } else if (PlayerPos.x >= 3){
             System.out.println("It feels like im further north");
-        } else if (PlayerPos.southCount >=3){
+        } else if (PlayerPos.x <= -3){
             System.out.println("It feels like im further south");
-        } else if (PlayerPos.westCount >=3){
+        } else if (PlayerPos.y >= -3){
             System.out.println("It feels like im further west");
-        } else if (PlayerPos.eastCount >=3){
+        } else if (PlayerPos.y >= 3){
             System.out.println("It feels like im further east");
         } else {
             System.out.println("It's hard to distinguish where i am without a compass.");
@@ -65,5 +63,12 @@ public class Biomes
             currentBiome = westBiome.get(1);
         }
         return currentBiome;
+    }
+
+    public void newGetCurrentBiome() {
+        switch (PlayerPos.northCount) {
+            case 1:
+                return ""
+        }
     }
 }
