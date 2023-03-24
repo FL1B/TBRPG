@@ -5,13 +5,13 @@ public class Biomes
 
 
 
-    public static ArrayList<String> northBiome = new ArrayList<String>();
+    public static ArrayList<String> northBiome = new ArrayList<>();
     public static ArrayList<String> southBiome = new ArrayList<>();
     public static ArrayList<String> eastBiome = new ArrayList<>();
     public static ArrayList<String> westBiome = new ArrayList<>();
 
 
-    public Biomes() {
+    static {
 
         northBiome.add("Snowy Mountains");
         northBiome.add("Frozen Tundra");
@@ -45,30 +45,35 @@ public class Biomes
         }
     }
 
+
+
     public static String getCurrentBiome() {
-        int maxCount = Math.max(Math.max(
-                PlayerPos.northCount,
-                PlayerPos.southCount),
-                Math.max(PlayerPos.eastCount,
-                        PlayerPos.westCount));
-        String currentBiome;
-
-        if (maxCount == PlayerPos.northCount) {
-            currentBiome = northBiome.get(1);
-        } else if (maxCount == PlayerPos.southCount) {
-            currentBiome = southBiome.get(1);
-        } else if (maxCount == PlayerPos.eastCount) {
-            currentBiome = eastBiome.get(1);
-        } else {
-            currentBiome = westBiome.get(1);
-        }
-        return currentBiome;
-    }
-
-    public void newGetCurrentBiome() {
-        switch (PlayerPos.northCount) {
-            case 1:
-                return ""
+        if (PlayerPos.getX() == 0 && PlayerPos.getY() == 1) {
+            return northBiome.get(0);
+        } else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 2) {
+            return northBiome.get(1);
+        }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 3) {
+            return northBiome.get(2);
+        }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == -1) {
+            return southBiome.get(0);
+        }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == -2) {
+            return southBiome.get(1);
+        }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == -3) {
+            return southBiome.get(2);
+        }else if (PlayerPos.getX() == 1 && PlayerPos.getY() == 0) {
+            return eastBiome.get(0);
+        }else if (PlayerPos.getX() == 2 && PlayerPos.getY() == 0) {
+            return eastBiome.get(1);
+        }else if (PlayerPos.getX() == 3 && PlayerPos.getY() == 0) {
+            return eastBiome.get(2);
+        }else if (PlayerPos.getX() == -1 && PlayerPos.getY() == 0) {
+            return westBiome.get(0);
+        }else if (PlayerPos.getX() == -2 && PlayerPos.getY() == 0) {
+            return westBiome.get(1);
+        }else if (PlayerPos.getX() == -3 && PlayerPos.getY() == 0) {
+            return westBiome.get(2);
+        }else {
+            return "error bitch!";
         }
     }
 }

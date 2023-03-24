@@ -38,7 +38,6 @@ public class TextRPG
                     break;
                 case "look around":
                     System.out.println(Biomes.getCurrentBiome());
-
                     break;
                 default:
                     System.out.println("Invalid command. Please try again.");
