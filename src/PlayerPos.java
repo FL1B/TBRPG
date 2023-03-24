@@ -22,23 +22,34 @@ public class PlayerPos {
 
 
     public static void moveNorth() {
-        RandomEvents.generateEvent();
         System.out.println("You walk north.");
+        RandomEvents.generateEvent();
+        RandomEvents.monsterSpawnChance ++;
+        RandomEvents.chestSpawnChance ++;
         setY(1);
     }
 
     public static void moveWest() {
         System.out.println("You walk west.");
+        RandomEvents.generateEvent();
+        RandomEvents.monsterSpawnChance ++;
+        RandomEvents.chestSpawnChance ++;
         setX(-1);
     }
 
     public static void moveEast() {
         System.out.println("You walk east.");
+        RandomEvents.generateEvent();
+        RandomEvents.monsterSpawnChance ++;
+        RandomEvents.chestSpawnChance ++;
         setX(1);
     }
 
     public static void moveSouth() {
         System.out.println("You walk south.");
+        RandomEvents.generateEvent();
+        RandomEvents.monsterSpawnChance ++;
+        RandomEvents.chestSpawnChance ++;
         setY(-1);
     }
 
