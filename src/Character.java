@@ -1,4 +1,4 @@
-public class Character {
+public class Character extends PlayerClass {
     private String name;
     private int lvl;
     private int xp;
