@@ -11,10 +11,13 @@ public class Main
     public static void main(String[] args) {
                 TextRPG game = new TextRPG();
 
-
-
-        game.chooseCharacter();
-        System.out.println(game.chooseCharacter().getPlayerClassName());
+        System.out.println(
+                "Class "+game.chooseCharacter().getPlayerClassName() +"\n" +
+                "HP " + game.currentClass.getHealthPoints() +"\n" +
+                "Str " + game.currentClass.getStrength() +"\n" +
+                "Mana " + game.currentClass.getMana() +"\n" +
+                "Int " + game.currentClass.getIntelligence() +"\n"
+        );
         game.firstMenu();
         game.movePlayer();
     }

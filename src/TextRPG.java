@@ -8,12 +8,15 @@ public class TextRPG
 {
     Scanner scanner = new Scanner(System.in);
     boolean askAgain = true;
+    PlayerClass currentClass;
 
 
     public PlayerClass chooseCharacter() {
+        System.out.println("Welcome to TextRPG");
         System.out.println("Choose a character");
         System.out.println("w => warrior");
         System.out.println("m => mage");
+
 
 
         String input = scanner.nextLine();
@@ -22,13 +25,13 @@ public class TextRPG
             case "w":
                 PlayerClassFactory warriorFactory = new WarriorFactory();
                 PlayerClass warrior = warriorFactory.createPlayerClass();
+                currentClass = warrior;
                 return warrior;
         }
         return null;
 
     }
     public void firstMenu() {
-        System.out.println("Welcome to TextRPG");
         System.out.println("Type 'move north' to move north");
         System.out.println("Type 'move west' to move west");
         System.out.println("Type 'move east' to move east");
