@@ -10,7 +10,7 @@ public class TextRPG
     boolean askAgain = true;
 
 
-    public void chooseCharacter() {
+    public PlayerClass chooseCharacter() {
         System.out.println("Choose a character");
         System.out.println("w => warrior");
         System.out.println("m => mage");
@@ -22,9 +22,9 @@ public class TextRPG
             case "w":
                 PlayerClassFactory warriorFactory = new WarriorFactory();
                 PlayerClass warrior = warriorFactory.createPlayerClass();
-                break;
+                return warrior;
         }
-
+        return null;
 
     }
     public void firstMenu() {
