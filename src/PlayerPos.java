@@ -22,6 +22,7 @@ public class PlayerPos
 
 
     public static void moveNorth() {
+        RandomEvents.generateEvent();
         System.out.println("You walk north.");
         setY(1);
     }
