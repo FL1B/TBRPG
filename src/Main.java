@@ -13,7 +13,7 @@ public class Main
 
 
 
-        game.chooseCharacter();
+        // game.chooseCharacter();
         System.out.println(game.chooseCharacter().getPlayerClassName());
         game.firstMenu();
         game.movePlayer();
