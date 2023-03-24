@@ -1,5 +1,4 @@
-public class PlayerPos
-{
+public class PlayerPos {
     public static int x = 0;
     public static int y = 0;
 
@@ -7,6 +6,7 @@ public class PlayerPos
     public static int getX() {
         return x;
     }
+
     public static int getY() {
         return y;
     }
@@ -15,10 +15,10 @@ public class PlayerPos
     public static void setX(int x) {
         PlayerPos.x += x;
     }
+
     public static void setY(int y) {
         PlayerPos.y += y;
     }
-
 
 
     public static void moveNorth() {

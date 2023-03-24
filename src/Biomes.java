@@ -1,6 +1,8 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
-public class Biomes
+public class Biomes extends JComponent
 {
 
 
@@ -26,6 +28,19 @@ public class Biomes
         westBiome.add("Coral Reef");
         westBiome.add("Deep Ocean");
     }
+    public void paint(Graphics g) {
+        int xc = PlayerPos.getX();
+        int yc = PlayerPos.getY();
+
+        g.drawRect(345,345,10,10);
+        g.fillRect(345,345,10,10);
+
+        for (int i = 0; i < 7; i++) {
+            for (int y = 0; y < 7; y++) {
+                g.drawRect(i*100,y*100,10*10,10*10);
+            }
+        }
+    }
 
     public static void navigate() {
         if (PlayerInv.compass == true) {
@@ -48,7 +63,7 @@ public class Biomes
 
 
     public static String getCurrentBiome() {
-        if (PlayerPos.getX() == 0 && PlayerPos.getY() == 1) {
+        if (PlayerPos.getX() >= 0 || PlayerPos.getX() <= 10 && PlayerPos.getY() >= 0 || PlayerPos.getY() <= 10) {
             return northBiome.get(0);
         } else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 2) {
             return northBiome.get(1);
@@ -75,5 +90,12 @@ public class Biomes
         }else {
             return "error bitch!";
         }
+    }
+    public static void main(String[] a) {
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setBounds(345, 345, 1000, 1000);
+        window.getContentPane().add(new Biomes());
+        window.setVisible(true);
     }
 }
