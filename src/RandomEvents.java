@@ -4,7 +4,7 @@ public class RandomEvents
 {
     static Random random = new Random();
     public static int monsterSpawnChance = 10; // Percentage chance of monster spawning per roll
-    public static int chestSpawnChance = 10; // Percentage chance of chest spawning per roll
+    public static int chestSpawnChance = 20; // Percentage chance of chest spawning per roll
 
 
     public static void generateEvent() {
