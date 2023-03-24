@@ -9,14 +9,11 @@ public class Main
 {
 
     public static void main(String[] args) {
+                TextRPG game = new TextRPG();
 
-        PlayerClassFactory warriorFactory = new WarriorFactory();
-        PlayerClass warrior = warriorFactory.createPlayerClass();
+        System.out.println(game.);
 
-        TextRPG game = new TextRPG();
-
-        System.out.println(warrior.getPlayerClassName());
-
+        game.chooseCharacter();
         game.firstMenu();
         game.movePlayer();
     }

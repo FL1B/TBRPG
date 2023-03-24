@@ -1,3 +1,7 @@
+import PlayerClass.PlayerClass;
+import PlayerClass.PlayerClassFactory;
+import PlayerClass.WarriorFactory;
+
 import java.util.Scanner;
 
 public class TextRPG
@@ -5,6 +9,24 @@ public class TextRPG
     Scanner scanner = new Scanner(System.in);
     boolean askAgain = true;
 
+
+    public void chooseCharacter() {
+        System.out.println("Choose a character");
+        System.out.println("w => warrior");
+        System.out.println("m => mage");
+
+
+        String input = scanner.nextLine();
+
+        switch (input.toLowerCase()) {
+            case "w":
+                PlayerClassFactory warriorFactory = new WarriorFactory();
+                PlayerClass warrior = warriorFactory.createPlayerClass();
+                break;
+        }
+
+
+    }
     public void firstMenu() {
         System.out.println("Welcome to TextRPG");
         System.out.println("Type 'move north' to move north");
