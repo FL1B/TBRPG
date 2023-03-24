@@ -1,7 +1,9 @@
+package PlayerClass;
+
 public class PlayerClass{
 
 
-    private String PlayerClassName;
+    private String playerClassName;
     private int healthPoints;
     private int mana;
     private int strength;
@@ -10,7 +12,7 @@ public class PlayerClass{
 
 
     public String getPlayerClassName() {
-        return PlayerClassName;
+        return playerClassName;
     }
     public int getHealthPoints() {
         return healthPoints;
@@ -28,7 +30,7 @@ public class PlayerClass{
 
 
     public void setPlayerClassName(String playerClassName) {
-        PlayerClassName = playerClassName;
+        this.playerClassName = playerClassName;
     }
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
