@@ -4,11 +4,12 @@ import Map.PlayerPos;
 import Player.PlayerInv;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Biomes extends JComponent
 {
 
-
+    public static HashMap<String, String> biomesMap = new HashMap<>();
 
     public static ArrayList<String> northBiome = new ArrayList<>();
     public static ArrayList<String> southBiome = new ArrayList<>();
@@ -18,18 +19,18 @@ public class Biomes extends JComponent
 
     static {
 
-        northBiome.add("Snowy Mountains");
-        northBiome.add("Frozen Tundra");
-        northBiome.add("Taiga Forest");
-        southBiome.add("Tropical Jungle");
-        southBiome.add("Desert Oasis");
-        southBiome.add("Savanna Plains");
-        eastBiome.add("Mystic River");
-        eastBiome.add("Enchanted Forest");
-        eastBiome.add("Volcano");
-        westBiome.add("Island Paradise");
-        westBiome.add("Coral Reef");
-        westBiome.add("Deep Ocean");
+        biomesMap.put("north1","Snowy Mountains");
+        biomesMap.put("north2","Frozen Tundra");
+        biomesMap.put("north3","Taiga Forest");
+        biomesMap.put("south1","Tropical Jungle");
+        biomesMap.put("south2","Desert Oasis");
+        biomesMap.put("south3","Savanna Plains");
+        biomesMap.put("east1","Mystic River");
+        biomesMap.put("east2","Enchanted Forest");
+        biomesMap.put("east3","Volcano");
+        biomesMap.put("west1","Island Paradise");
+        biomesMap.put("west2","Coral Reef");
+        biomesMap.put("west3","Deep Ocean");
     }
 
 
@@ -55,29 +56,29 @@ public class Biomes extends JComponent
 
     public static String getCurrentBiome() {
         if (PlayerPos.getX() >= 0 || PlayerPos.getX() <= 10 && PlayerPos.getY() >= 0 || PlayerPos.getY() <= 10) {
-            return northBiome.get(0);
+            return biomesMap.get("north1");
         } else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 2) {
-            return northBiome.get(1);
+            return biomesMap.get("north2");
         }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 3) {
-            return northBiome.get(2);
+            return biomesMap.get("north3");
         }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == -1) {
-            return southBiome.get(0);
+            return biomesMap.get("south1");
         }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == -2) {
-            return southBiome.get(1);
+            return biomesMap.get("south2");
         }else if (PlayerPos.getX() == 0 && PlayerPos.getY() == -3) {
-            return southBiome.get(2);
+            return biomesMap.get("south3");
         }else if (PlayerPos.getX() == 1 && PlayerPos.getY() == 0) {
-            return eastBiome.get(0);
+            return biomesMap.get("east1");
         }else if (PlayerPos.getX() == 2 && PlayerPos.getY() == 0) {
-            return eastBiome.get(1);
+            return biomesMap.get("east2");
         }else if (PlayerPos.getX() == 3 && PlayerPos.getY() == 0) {
-            return eastBiome.get(2);
+            return biomesMap.get("east3");
         }else if (PlayerPos.getX() == -1 && PlayerPos.getY() == 0) {
-            return westBiome.get(0);
+            return biomesMap.get("west1");
         }else if (PlayerPos.getX() == -2 && PlayerPos.getY() == 0) {
-            return westBiome.get(1);
+            return biomesMap.get("west2");
         }else if (PlayerPos.getX() == -3 && PlayerPos.getY() == 0) {
-            return westBiome.get(2);
+            return biomesMap.get("west3");
         }else {
             return "error bitch!";
         }
