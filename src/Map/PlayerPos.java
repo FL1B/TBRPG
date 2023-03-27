@@ -16,11 +16,23 @@ public class PlayerPos {
 
 
     public static void setX(int x) {
-        PlayerPos.x += x;
+        if (PlayerPos.x == 760) {
+            PlayerPos.x = 760;
+        } else if (PlayerPos.x == 10) {
+            PlayerPos.x = 10;
+        } else {
+            PlayerPos.x += x;
+        }
     }
 
     public static void setY(int y) {
-        PlayerPos.y += y;
+        if (PlayerPos.y == 760) {
+            PlayerPos.y = 760;
+        } else if (PlayerPos.y == 10) {
+            PlayerPos.y = 10;
+        } else {
+            PlayerPos.y += y;
+        }
     }
 
 
@@ -30,6 +42,8 @@ public class PlayerPos {
         switch (direction) {
             case 'n':
                 System.out.println("You walk north.");
+                System.out.println("X " + PlayerPos.x);
+                System.out.println("Y " + PlayerPos.y);
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
@@ -37,6 +51,8 @@ public class PlayerPos {
                 break;
             case 's':
                 System.out.println("You walk south.");
+                System.out.println("X " + PlayerPos.x);
+                System.out.println("Y " + PlayerPos.y);
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
@@ -44,6 +60,8 @@ public class PlayerPos {
                 break;
             case 'e':
                 System.out.println("You walk east.");
+                System.out.println("X " + PlayerPos.x);
+                System.out.println("Y " + PlayerPos.y);
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
@@ -51,6 +69,8 @@ public class PlayerPos {
                 break;
             case 'w':
                 System.out.println("You walk west.");
+                System.out.println("X " + PlayerPos.x);
+                System.out.println("Y " + PlayerPos.y);
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;

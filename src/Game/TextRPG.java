@@ -7,6 +7,8 @@ import PlayerClass.PlayerClass;
 import PlayerClass.PlayerClassFactory;
 import PlayerClass.WarriorFactory;
 import PlayerClass.MageFactory;
+import PlayerClass.RogueFactory;
+
 
 import java.util.Scanner;
 
@@ -22,6 +24,7 @@ public class TextRPG
         System.out.println("Choose a character");
         System.out.println("w => warrior");
         System.out.println("m => mage");
+        System.out.println("r => rogue");
 
 
 
@@ -38,6 +41,11 @@ public class TextRPG
                 PlayerClass mage = mageFactory.createPlayerClass();
                 currentClass = mage;
                 return mage;
+            case "r":
+                PlayerClassFactory rogueFactory = new RogueFactory();
+                PlayerClass rogue = rogueFactory.createPlayerClass();
+                currentClass = rogue;
+                return rogue;
         }
         return null;
 
