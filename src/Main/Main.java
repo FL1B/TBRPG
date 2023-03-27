@@ -1,3 +1,6 @@
+package Main;
+
+import Game.TextRPG;
 import PlayerClass.MageFactory;
 import PlayerClass.PlayerClass;
 import PlayerClass.PlayerClassFactory;
