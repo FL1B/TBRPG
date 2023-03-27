@@ -1,3 +1,7 @@
+package Game;
+
+import Map.Biomes;
+import Map.PlayerPos;
 import PlayerClass.PlayerClass;
 import PlayerClass.PlayerClassFactory;
 import PlayerClass.WarriorFactory;
@@ -8,7 +12,7 @@ public class TextRPG
 {
     Scanner scanner = new Scanner(System.in);
     boolean askAgain = true;
-    PlayerClass currentClass;
+    public PlayerClass currentClass;
 
 
     public PlayerClass chooseCharacter() {

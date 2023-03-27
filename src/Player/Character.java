@@ -1,3 +1,5 @@
+package Player;
+
 public class Character extends PlayerClass {
     private String name;
     private int lvl;
