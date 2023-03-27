@@ -55,7 +55,7 @@ public class Biomes extends JComponent
 
 
     public static String getCurrentBiome() {
-        if (PlayerPos.getX() >= 0 || PlayerPos.getX() <= 10 && PlayerPos.getY() >= 0 || PlayerPos.getY() <= 10) {
+        if (PlayerPos.getX() <= 10 && PlayerPos.getY() >= 0 || PlayerPos.getY() <= 10) {
             return biomesMap.get("north1");
         } else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 2) {
             return biomesMap.get("north2");

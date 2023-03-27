@@ -2,8 +2,8 @@ package Map;
 import Game.RandomEvents;
 
 public class PlayerPos {
-    public static int x = 0;
-    public static int y = 0;
+    public static int x = 345;
+    public static int y = 345;
 
 
     public static int getX() {
@@ -24,36 +24,40 @@ public class PlayerPos {
     }
 
 
-    public static void moveNorth() {
-        System.out.println("You walk north.");
-        RandomEvents.generateEvent();
-        RandomEvents.monsterSpawnChance ++;
-        RandomEvents.chestSpawnChance ++;
-        setY(1);
-    }
+    public static void move(String input) {
+        char direction = input.charAt(0);
 
-    public static void moveWest() {
-        System.out.println("You walk west.");
-        RandomEvents.generateEvent();
-        RandomEvents.monsterSpawnChance ++;
-        RandomEvents.chestSpawnChance ++;
-        setX(-1);
+        switch (direction) {
+            case 'n':
+                System.out.println("You walk north.");
+                RandomEvents.generateEvent();
+                RandomEvents.monsterSpawnChance ++;
+                RandomEvents.chestSpawnChance ++;
+                setY(1);
+                break;
+            case 's':
+                System.out.println("You walk south.");
+                RandomEvents.generateEvent();
+                RandomEvents.monsterSpawnChance ++;
+                RandomEvents.chestSpawnChance ++;
+                setY(-1);
+                break;
+            case 'e':
+                System.out.println("You walk east.");
+                RandomEvents.generateEvent();
+                RandomEvents.monsterSpawnChance ++;
+                RandomEvents.chestSpawnChance ++;
+                setX(1);
+                break;
+            case 'w':
+                System.out.println("You walk west.");
+                RandomEvents.generateEvent();
+                RandomEvents.monsterSpawnChance ++;
+                RandomEvents.chestSpawnChance ++;
+                setX(-1);
+                break;
+            default:
+                System.out.println("Invalid direction: " + direction);
+        }
     }
-
-    public static void moveEast() {
-        System.out.println("You walk east.");
-        RandomEvents.generateEvent();
-        RandomEvents.monsterSpawnChance ++;
-        RandomEvents.chestSpawnChance ++;
-        setX(1);
-    }
-
-    public static void moveSouth() {
-        System.out.println("You walk south.");
-        RandomEvents.generateEvent();
-        RandomEvents.monsterSpawnChance ++;
-        RandomEvents.chestSpawnChance ++;
-        setY(-1);
-    }
-
 }

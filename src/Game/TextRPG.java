@@ -36,36 +36,36 @@ public class TextRPG
 
     }
     public void firstMenu() {
-        System.out.println("Type 'move north' to move north");
-        System.out.println("Type 'move west' to move west");
-        System.out.println("Type 'move east' to move east");
-        System.out.println("Type 'move south' to move south");
+        System.out.println("Type 'n' to move north");
+        System.out.println("Type 'w' to move west");
+        System.out.println("Type 'e' to move east");
+        System.out.println("Type 's' to move south");
     }
 
     public void movePlayer() {
         do {
             String input = scanner.nextLine();
 
-            switch (input.toLowerCase()) {
-                case "move north":
-                    PlayerPos.moveNorth();
+            switch (input) {
+                case "n":
+                    PlayerPos.move(input);
                     break;
-                case "move west":
-                    PlayerPos.moveWest();
+                case "w":
+                    PlayerPos.move(input);
                     break;
-                case "move east":
-                    PlayerPos.moveEast();
+                case "e":
+                    PlayerPos.move(input);
                     break;
-                case "move south":
-                    PlayerPos.moveSouth();
+                case "s":
+                    PlayerPos.move(input);
                     break;
-                case "help":
+                case "h":
                     listOfCommands();
                     break;
-                case "scope location":
+                case "c":
                     Biomes.navigate();
                     break;
-                case "look around":
+                case "l":
                     System.out.println(Biomes.getCurrentBiome());
                     break;
                 default:
@@ -77,11 +77,11 @@ public class TextRPG
 
     public void listOfCommands() {
         System.out.println("This is the list of commands:");
-        System.out.println("Type 'move north' to move north.");
-        System.out.println("Type 'move west' to move west.");
-        System.out.println("Type 'move east' to move east.");
-        System.out.println("Type 'move south' to move south.");
-        System.out.println("Type 'look around' to look around.");
+        System.out.println("Type 'n' to move north.");
+        System.out.println("Type 'w to move west.");
+        System.out.println("Type 'e' to move east.");
+        System.out.println("Type 's' to move south.");
+        System.out.println("Type 'l' to look around.");
         System.out.println("");
     }
 }
