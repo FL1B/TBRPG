@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Main
 {
     private static void updateWindow(TextRPG game, Map map) {
-        System.out.println("Updating window");
         System.out.println(
                 "Class " + game.chooseCharacter().getPlayerClassName() + "\n" +
                         "HP " + game.currentClass.getHealthPoints() + "\n" +
@@ -17,10 +16,13 @@ public class Main
                         "Mana " + game.currentClass.getMana() + "\n" +
                         "Int " + game.currentClass.getIntelligence() + "\n"
         );
-        game.firstMenu();
-        game.movePlayer();
 
-        map.repaint();
+        while (true) {
+            game.firstMenu();
+            game.movePlayer();
+            System.out.println("Updating window");
+            map.repaint();
+        }
     }
 
     private static String readUserInput() {
@@ -42,10 +44,6 @@ public class Main
 
         updateWindow(game, map);
 
-        while (true) {
-            updateWindow(game, map);
-            game.movePlayer();
-            Thread.sleep(100);
-        }
+
     }
 }

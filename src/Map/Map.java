@@ -12,8 +12,8 @@ public class Map extends JComponent {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawRect(xc, yc, 10, 10);
-        g.fillRect(xc, yc, 10, 10);
+        g.drawRect(PlayerPos.getX(), PlayerPos.getY(), 10, 10);
+        g.fillRect(PlayerPos.getX(), PlayerPos.getY(), 10, 10);
 
 
         for (int i = 0; i < 7; i++) {

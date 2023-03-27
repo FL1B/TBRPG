@@ -2,6 +2,7 @@ package Game;
 
 import Map.Biomes;
 import Map.PlayerPos;
+import Map.Map;
 import PlayerClass.PlayerClass;
 import PlayerClass.PlayerClassFactory;
 import PlayerClass.WarriorFactory;
@@ -67,6 +68,9 @@ public class TextRPG
                     break;
                 case "l":
                     System.out.println(Biomes.getCurrentBiome());
+                    break;
+                case "exit":
+                    askAgain = false;
                     break;
                 default:
                     System.out.println("Invalid command. Please try again.");

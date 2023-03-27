@@ -33,28 +33,28 @@ public class PlayerPos {
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setY(1);
+                setY(10);
                 break;
             case 's':
                 System.out.println("You walk south.");
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setY(-1);
+                setY(-10);
                 break;
             case 'e':
                 System.out.println("You walk east.");
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setX(1);
+                setX(10);
                 break;
             case 'w':
                 System.out.println("You walk west.");
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setX(-1);
+                setX(-10);
                 break;
             default:
                 System.out.println("Invalid direction: " + direction);
