@@ -16,11 +16,9 @@ public class Main
                         "Mana " + game.currentClass.getMana() + "\n" +
                         "Int " + game.currentClass.getIntelligence() + "\n"
         );
-
+        game.firstMenu();
         while (true) {
-            game.firstMenu();
             game.movePlayer();
-            System.out.println("Updating window");
             map.repaint();
         }
     }
@@ -37,7 +35,7 @@ public class Main
         JFrame window = new JFrame();
         Map map = new Map();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(345, 345, 1000, 1000);
+        window.setBounds(345, 345, 800, 820);
         window.setTitle("TextRPG");
         window.getContentPane().add(map);
         window.setVisible(true);

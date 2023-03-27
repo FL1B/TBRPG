@@ -7,8 +7,8 @@ public class Map extends JComponent {
 
     int xc = PlayerPos.getX();
     int yc = PlayerPos.getY();
-    int tileSize = 10;
-    int scale = 100;
+    int tileSize = 11;
+    int scale = 110;
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 

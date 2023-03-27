@@ -2,8 +2,8 @@ package Map;
 import Game.RandomEvents;
 
 public class PlayerPos {
-    public static int x = 345;
-    public static int y = 345;
+    public static int x = 380;
+    public static int y = 380;
 
 
     public static int getX() {
@@ -33,14 +33,14 @@ public class PlayerPos {
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setY(10);
+                setY(-10);
                 break;
             case 's':
                 System.out.println("You walk south.");
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setY(-10);
+                setY(10);
                 break;
             case 'e':
                 System.out.println("You walk east.");

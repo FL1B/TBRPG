@@ -6,6 +6,7 @@ import Map.Map;
 import PlayerClass.PlayerClass;
 import PlayerClass.PlayerClassFactory;
 import PlayerClass.WarriorFactory;
+import PlayerClass.MageFactory;
 
 import java.util.Scanner;
 
@@ -32,6 +33,11 @@ public class TextRPG
                 PlayerClass warrior = warriorFactory.createPlayerClass();
                 currentClass = warrior;
                 return warrior;
+            case "m":
+                PlayerClassFactory mageFactory = new MageFactory();
+                PlayerClass mage = mageFactory.createPlayerClass();
+                currentClass = mage;
+                return mage;
         }
         return null;
 
@@ -76,7 +82,7 @@ public class TextRPG
                     System.out.println("Invalid command. Please try again.");
                     System.out.println("Type 'help' for list of commands");
             }
-        } while (askAgain);
+        } while (false);
     }
 
     public void listOfCommands() {
