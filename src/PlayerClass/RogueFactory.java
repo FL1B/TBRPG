@@ -5,10 +5,10 @@ public class RogueFactory extends PlayerClassFactory {
     public PlayerClass createPlayerClass() {
         PlayerClass rogue = new PlayerClass();
         rogue.setPlayerClassName("Rogue");
-        rogue.setHealthPoints(70);
-        rogue.setMana(80);
-        rogue.setStrength(20);
-        rogue.setIntelligence(10);
+        rogue.setHealthPoints(8);
+        rogue.setMana(2);
+        rogue.setStrength(2);
+        rogue.setIntelligence(2);
         return rogue;
     }
 }

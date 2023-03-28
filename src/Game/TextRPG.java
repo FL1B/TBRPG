@@ -37,18 +37,22 @@ public class TextRPG
                 PlayerClassFactory warriorFactory = new WarriorFactory();
                 PlayerClass warrior = warriorFactory.createPlayerClass();
                 currentClass = warrior;
-                Character character = new Character(nameSelect,1, 0, warrior.getHealthPoints(), warrior.getMana(), warrior.getIntelligence(), warrior.getStrength());
-                currentCharacter = character;
+                Character warriorCharacter = new Character(nameSelect,1, 10000, warrior.getHealthPoints(), warrior.getMana(), warrior.getIntelligence(), warrior.getStrength());
+                currentCharacter = warriorCharacter;
                 return warrior;
             case "m":
                 PlayerClassFactory mageFactory = new MageFactory();
                 PlayerClass mage = mageFactory.createPlayerClass();
                 currentClass = mage;
+                Character mageCharacter = new Character(nameSelect,1, 10000, mage.getHealthPoints(), mage.getMana(), mage.getIntelligence(), mage.getStrength());
+                currentCharacter = mageCharacter;
                 return mage;
             case "r":
                 PlayerClassFactory rogueFactory = new RogueFactory();
                 PlayerClass rogue = rogueFactory.createPlayerClass();
                 currentClass = rogue;
+                Character rogueCharacter = new Character(nameSelect,1, 10000, rogue.getHealthPoints(), rogue.getMana(), rogue.getIntelligence(), rogue.getStrength());
+                currentCharacter = rogueCharacter;
                 return rogue;
         }
         return null;

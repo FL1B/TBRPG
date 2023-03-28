@@ -10,7 +10,7 @@ public class MageFactory extends PlayerClassFactory {
         mage.setHealthPoints(6);
         mage.setMana(4);
         mage.setStrength(0);
-        mage.setIntelligence(1);
+        mage.setIntelligence(4);
         return mage;
     }
 }
