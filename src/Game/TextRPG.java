@@ -8,6 +8,7 @@ import PlayerClass.PlayerClassFactory;
 import PlayerClass.WarriorFactory;
 import PlayerClass.MageFactory;
 import PlayerClass.RogueFactory;
+import Player.Character;
 
 
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class TextRPG
     Scanner scanner = new Scanner(System.in);
     boolean askAgain = true;
     public PlayerClass currentClass;
+    public Character currentCharacter;
 
 
     public PlayerClass chooseCharacter() {
@@ -26,8 +28,6 @@ public class TextRPG
         System.out.println("m => mage");
         System.out.println("r => rogue");
 
-
-
         String input = scanner.nextLine();
 
         switch (input.toLowerCase()) {
@@ -35,6 +35,8 @@ public class TextRPG
                 PlayerClassFactory warriorFactory = new WarriorFactory();
                 PlayerClass warrior = warriorFactory.createPlayerClass();
                 currentClass = warrior;
+                Character character = new Character("Petter", 1, 0, warrior.getHealthPoints(), warrior.getMana(), warrior.getIntelligence(), warrior.getStrength());
+                currentCharacter = character;
                 return warrior;
             case "m":
                 PlayerClassFactory mageFactory = new MageFactory();

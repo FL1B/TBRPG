@@ -2,6 +2,7 @@ package Main;
 
 import Game.TextRPG;
 import Map.Map;
+import Player.Character;
 
 import javax.swing.*;
 import java.util.Scanner;
@@ -10,13 +11,15 @@ public class Main
 {
     private static void updateWindow(TextRPG game, Map map) {
         System.out.println(
-                "Class " + game.chooseCharacter().getPlayerClassName() + "\n" +
-                        "HP " + game.currentClass.getHealthPoints() + "\n" +
-                        "Str " + game.currentClass.getStrength() + "\n" +
-                        "Mana " + game.currentClass.getMana() + "\n" +
-                        "Int " + game.currentClass.getIntelligence() + "\n"
+                "Class " + game.chooseCharacter().getPlayerClassName() + " " + game.currentCharacter.getName() + "lvl" + game.currentCharacter.getLvl() + "\n" +
+                        "HP " + game.currentCharacter.getCurrentHp() + "\n" +
+                        "Mana " + game.currentCharacter.getCurrentMana() + "\n" +
+                        "Str " + game.currentCharacter.getStrength() + "\n" +
+                        "Int " + game.currentCharacter.getIntelligence() + "\n"
         );
+
         game.firstMenu();
+
         while (true) {
             game.movePlayer();
             map.repaint();
