@@ -7,10 +7,10 @@ public class MageFactory extends PlayerClassFactory {
     public PlayerClass createPlayerClass() {
         PlayerClass mage = new PlayerClass();
         mage.setPlayerClassName("Mage");
-        mage.setHealthPoints(80);
-        mage.setMana(100);
-        mage.setStrength(5);
-        mage.setIntelligence(30);
+        mage.setHealthPoints(6);
+        mage.setMana(4);
+        mage.setStrength(0);
+        mage.setIntelligence(1);
         return mage;
     }
 }

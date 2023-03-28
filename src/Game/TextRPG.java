@@ -28,14 +28,16 @@ public class TextRPG
         System.out.println("m => mage");
         System.out.println("r => rogue");
 
-        String input = scanner.nextLine();
+        String classSelect = scanner.nextLine();
+        System.out.println("Choose a name");
+        String nameSelect = scanner.nextLine();
 
-        switch (input.toLowerCase()) {
+        switch (classSelect.toLowerCase()) {
             case "w":
                 PlayerClassFactory warriorFactory = new WarriorFactory();
                 PlayerClass warrior = warriorFactory.createPlayerClass();
                 currentClass = warrior;
-                Character character = new Character("Petter", 1, 0, warrior.getHealthPoints(), warrior.getMana(), warrior.getIntelligence(), warrior.getStrength());
+                Character character = new Character(nameSelect,1, 0, warrior.getHealthPoints(), warrior.getMana(), warrior.getIntelligence(), warrior.getStrength());
                 currentCharacter = character;
                 return warrior;
             case "m":

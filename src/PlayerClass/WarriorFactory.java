@@ -7,10 +7,10 @@ public class WarriorFactory extends PlayerClassFactory {
     public PlayerClass createPlayerClass() {
         PlayerClass warrior = new PlayerClass();
         warrior.setPlayerClassName("Warrior");
-        warrior.setHealthPoints(100);
+        warrior.setHealthPoints(10);
         warrior.setMana(0);
-        warrior.setStrength(20);
-        warrior.setIntelligence(10);
+        warrior.setStrength(4);
+        warrior.setIntelligence(1);
         return warrior;
 
     }

@@ -1,6 +1,9 @@
 package Player;
 
 import PlayerClass.PlayerClass;
+
+import java.util.Scanner;
+
 public class Character extends PlayerClass {
 
     private String name;
@@ -15,17 +18,15 @@ public class Character extends PlayerClass {
 
 
     public Character(String name, int lvl, int xp, int maxHealth, int maxMana, int intelligence, int strength) {
-        this.name = name;
-        this.lvl = lvl;
-        this.xp = xp;
-        this.maxHealth = maxHealth;
-        this.currentHp = maxHealth;
-        this.maxMana = maxMana;
-        this.currentMana = maxMana;
-        this.intelligence = intelligence;
-        this.strength = strength;
-
-
+        this.setName(name);
+        this.setLvl(lvl);
+        this.setXp(xp);
+        this.setMaxHealth(maxHealth);
+        this.setCurrentHp(getMaxHealth());
+        this.setMaxMana(maxMana);
+        this.setCurrentMana(getMaxMana());
+        this.setIntelligence(intelligence);
+        this.setStrength(strength);
     }
 
     public void setName(String name) {
@@ -41,7 +42,15 @@ public class Character extends PlayerClass {
     }
 
     public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
+
+        if (!(this.maxHealth >= 100)) {
+            this.maxHealth = maxHealth + getLvl();
+            if (this.maxHealth >= 100) {
+                this.maxHealth = 100;
+            }
+        } else {
+            this.maxHealth = 100;
+        }
     }
 
     public void setCurrentHp(int currentHp) {
@@ -49,7 +58,7 @@ public class Character extends PlayerClass {
     }
 
     public void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
+        this.maxMana = maxMana * getLvl();
     }
 
     public void setCurrentMana(int currentMana) {
@@ -57,11 +66,11 @@ public class Character extends PlayerClass {
     }
 
     public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
+        this.intelligence = intelligence * getLvl();
     }
 
     public void setStrength(int strength) {
-        this.strength = strength;
+        this.strength = strength * getLvl();
     }
 
 
