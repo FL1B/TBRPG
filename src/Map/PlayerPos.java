@@ -2,8 +2,8 @@ package Map;
 import Game.RandomEvents;
 
 public class PlayerPos {
-    public static int x = 380;
-    public static int y = 380;
+    public static int x = 3850;
+    public static int y = 3850;
 
 
     public static int getX() {

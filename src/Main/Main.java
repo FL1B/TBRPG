@@ -37,15 +37,13 @@ public class Main
     public static void main(String[] args) throws InterruptedException {
         TextRPG game = new TextRPG();
         JFrame window = new JFrame();
-        Map map = new Map();
+        Map map = new Map(window);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(345, 345, 800, 820);
+        window.setBounds(0, 0, 770 , 770);
         window.setTitle("TextRPG");
         window.getContentPane().add(map);
         window.setVisible(true);
 
         updateWindow(game, map);
-
-
     }
 }
