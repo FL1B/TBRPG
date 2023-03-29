@@ -39,7 +39,7 @@ public class Main
         JFrame window = new JFrame();
         Map map = new Map(window);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(0, 0, 770 , 770);
+        window.setBounds(0, 0, 1100 , 1100);
         window.setTitle("TextRPG");
         window.getContentPane().add(map);
         window.setVisible(true);

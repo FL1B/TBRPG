@@ -2,8 +2,12 @@ package Map;
 import Game.RandomEvents;
 
 public class PlayerPos {
-    public static int x = 3850;
-    public static int y = 3850;
+    public static int x = 0;
+    public static int y = 0;
+    public static int maxX = -7200;
+    public static int maxY = -7200;
+    public static int minX = 500;
+    public static int minY = 500;
 
 
     public static int getX() {
@@ -16,20 +20,20 @@ public class PlayerPos {
 
 
     public static void setX(int x) {
-        if (PlayerPos.x == 760) {
-            PlayerPos.x = 760;
-        } else if (PlayerPos.x == 10) {
-            PlayerPos.x = 10;
+        if (PlayerPos.x < maxX) {
+            PlayerPos.x = maxX;
+        } else if (PlayerPos.x > minX) {
+            PlayerPos.x = minX;
         } else {
             PlayerPos.x += x;
         }
     }
 
     public static void setY(int y) {
-        if (PlayerPos.y == 760) {
-            PlayerPos.y = 760;
-        } else if (PlayerPos.y == 10) {
-            PlayerPos.y = 10;
+        if (PlayerPos.y < maxY) {
+            PlayerPos.y = maxY;
+        } else if (PlayerPos.y > minY) {
+            PlayerPos.y = minY;
         } else {
             PlayerPos.y += y;
         }
@@ -47,7 +51,7 @@ public class PlayerPos {
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setY(-10);
+                setY(100);
                 break;
             case 's':
                 System.out.println("You walk south.");
@@ -56,7 +60,7 @@ public class PlayerPos {
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setY(10);
+                setY(-100);
                 break;
             case 'e':
                 System.out.println("You walk east.");
@@ -65,7 +69,7 @@ public class PlayerPos {
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setX(10);
+                setX(-100);
                 break;
             case 'w':
                 System.out.println("You walk west.");
@@ -74,7 +78,7 @@ public class PlayerPos {
                 RandomEvents.generateEvent();
                 RandomEvents.monsterSpawnChance ++;
                 RandomEvents.chestSpawnChance ++;
-                setX(-10);
+                setX(100);
                 break;
             default:
                 System.out.println("Invalid direction: " + direction);
