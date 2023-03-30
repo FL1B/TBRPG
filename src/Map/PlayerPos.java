@@ -4,8 +4,8 @@ import Game.RandomEvents;
 public class PlayerPos {
     public static int x = 0;
     public static int y = 0;
-    public static int maxX = 7200;
-    public static int maxY = 7200;
+    public static int maxX = 1000;
+    public static int maxY = 1000;
     public static int minX = maxX-(maxX*2);
     public static int minY = maxY-(maxY*2);
 

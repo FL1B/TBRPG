@@ -3,8 +3,7 @@ package Map;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Image;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 
@@ -32,47 +31,97 @@ public class Map extends JComponent {
         }
     }
 
-    private void loadMapArray(String filename) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(filename));
-        int numRows = 7;
-        int numCols = 7;
+    // Laster inn mapArray.txt og putter det inn i mapArray.
+    private void loadMapArray(String filename) throws FileNotFoundException, IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        int numRows = 10;
+        int numCols = 10;
         mapArray = new int[numRows][numCols];
 
-        for (int row = 0; row < numRows; row++) {
-            if (!scanner.hasNextLine()) {
-                throw new IllegalArgumentException("File contains too few lines");
+        String line;
+        int row = 0;
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) {
+                continue;
             }
 
-            String line = scanner.nextLine();
-            Scanner lineScanner = new Scanner(line);
+            String[] tokens = line.split(",");
+            if (tokens.length != numCols) {
+                reader.close();
+                throw new IllegalArgumentException("Line contains too few numbers");
+            }
 
             for (int col = 0; col < numCols; col++) {
-                if (!lineScanner.hasNextInt()) {
-                    throw new IllegalArgumentException("Line contains too few numbers");
-                }
-                mapArray[row][col] = lineScanner.nextInt();
+                mapArray[row][col] = Integer.parseInt(tokens[col]);
             }
-            lineScanner.close();
+            row++;
         }
-        scanner.close();
+        reader.close();
+        if (row < numRows) {
+            throw new IllegalArgumentException("File contains too few lines");
+        }
     }
 
+
+    //Printer mapArray i kosoll
+    public void printMapArray() {
+        for (int row = 0; row < mapArray.length; row++) {
+            for (int col = 0; col < mapArray[row].length; col++) {
+                System.out.print(mapArray[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Lagrer PlayerPos slik at det synes i printMapArray
+    public void savePlayerPos() {
+        removePreviousPlayerPos();
+
+        int row = (-PlayerPos.getY()/100)+5;
+        int col = (-PlayerPos.getX()/100)+5;
+        mapArray[row][col] = 8;
+
+        System.out.println("row " + row + " col " + col);
+        printMapArray();
+    }
+
+    // Fjerner forrige posisjon på player dette ved å kjøre denne før man kjører savePlayerPos()
+    public void removePreviousPlayerPos() {
+        for (int row = 0; row < mapArray.length; row++) {
+            for (int col = 0; col < mapArray[row].length; col++) {
+                if (mapArray[row][col] == 8) {
+                    mapArray[row][col] = 0;
+                }
+            }
+        }
+    }
+
+    //# oppdaterer posisjon på kart.
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         if (img != null) {
+            // Regner ut hvor karaktere skal være plassert i window.
             int playerWidth = 10 * 10;
             int playerHeight = 10 * 10;
             int halfWindowWidth = window.getWidth() / 2;
             int halfWindowHeight = window.getHeight() / 2;
             int offsetX = xc - halfWindowWidth;
             int offsetY = yc - halfWindowHeight;
+
+            // Tegner kartet og karakter
             g.drawImage(map1, +PlayerPos.getX()-mapSize/2,+PlayerPos.getY()-mapSize/2, mapSize, mapSize, null);
             g.drawImage(img, -offsetX-60, -offsetY-40, playerWidth, playerHeight, null);
+
+            removePreviousPlayerPos();
+            savePlayerPos();
+
         } else {
             System.out.println("Error: Player img not loading");
         }
 
+        // Tegner alle bioms 7x7
         for (int i = 0; i < 7; i++) {
             for (int y = 0; y < 7; y++) {
                 g.drawRect(i * scale + PlayerPos.getX()-mapSize/2, y * scale + PlayerPos.getY()-mapSize/2, tileSize * 10, tileSize * 10);
