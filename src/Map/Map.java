@@ -12,6 +12,8 @@ public class Map extends JComponent {
 
     private Image img;
     private Image map1;
+    private Image wall;
+    private Image grass;
     private int xc = PlayerPos.getX();
     private int yc = PlayerPos.getY();
     private int tileSize = 100;
@@ -23,12 +25,17 @@ public class Map extends JComponent {
     public Map(JFrame window) {
         this.window = window;
         try {
-            img = new ImageIcon("src/Map/warrior_resting.png").getImage();
             map1 = new ImageIcon("src/Map/map1.png").getImage();
+            wall = new ImageIcon("src/images/textures/wall 16x16.png").getImage();
+            grass = new ImageIcon("src/images/textures/grass_16x16.png").getImage();
             loadMapArray("src/Map/mapArray.txt");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void setPlayerImg(String value) {
+        img = new ImageIcon(value).getImage();
     }
 
     // Laster inn mapArray.txt og putter det inn i mapArray.
@@ -110,23 +117,31 @@ public class Map extends JComponent {
             int offsetX = xc - halfWindowWidth;
             int offsetY = yc - halfWindowHeight;
 
-            // Tegner kartet og karakter
-            g.drawImage(map1, +PlayerPos.getX()-mapSize/2,+PlayerPos.getY()-mapSize/2, mapSize, mapSize, null);
-            g.drawImage(img, -offsetX-60, -offsetY-40, playerWidth, playerHeight, null);
 
-            removePreviousPlayerPos();
             savePlayerPos();
 
         } else {
             System.out.println("Error: Player img not loading");
         }
 
-        // Tegner alle bioms 7x7
-        for (int i = 0; i < 7; i++) {
-            for (int y = 0; y < 7; y++) {
-                g.drawRect(i * scale + PlayerPos.getX()-mapSize/2, y * scale + PlayerPos.getY()-mapSize/2, tileSize * 10, tileSize * 10);
+        for (int row = 0; row < mapArray.length; row++) {
+            for (int col = 0; col < mapArray[row].length; col++) {
+                if (mapArray[row][col] == 1) {
+                    g.drawImage(wall,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
+                } else if (mapArray[row][col] == 0) {
+                    g.drawImage(grass,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
+                } else if (mapArray[row][col] == 8) {
+                    g.drawImage(img,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
+                }
             }
         }
+
+        // Tegner alle bioms 7x7
+        //for (int i = 0; i < 7; i++) {
+            //for (int y = 0; y < 7; y++) {
+                //g.drawRect(i * scale + PlayerPos.getX()-mapSize/2, y * scale + PlayerPos.getY()-mapSize/2, tileSize * 10, tileSize * 10);
+            //}
+        //}
     }
 }
 

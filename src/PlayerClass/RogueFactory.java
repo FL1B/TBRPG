@@ -9,6 +9,7 @@ public class RogueFactory extends PlayerClassFactory {
         rogue.setMana(2);
         rogue.setStrength(2);
         rogue.setIntelligence(2);
+        rogue.setImage("src/images/player/rogue_resting_12x16.png");
         return rogue;
     }
 }

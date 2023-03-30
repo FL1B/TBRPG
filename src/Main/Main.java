@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main
 {
-    private static void updateWindow(TextRPG game, Map map) {
-        game.chooseCharacter();
+    private static void updateWindow(TextRPG game, Map map, JFrame window) {
+        game.chooseCharacter(map);
         System.out.println(
                         game.currentCharacter.getName() +  " the " + game.currentClass.getPlayerClassName() + " lvl " + game.currentCharacter.getLvl() + "\n" +
                         "HP " + game.currentCharacter.getMaxHealth() + "\n" +
@@ -19,6 +19,12 @@ public class Main
                         "Int " + game.currentCharacter.getIntelligence() + "\n"
         );
 
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setBounds(0, 0, 1920 , 1080);
+        window.setTitle("TextRPG");
+        window.getContentPane().add(map);
+        window.setVisible(true);
+        window.setResizable(false);
         game.firstMenu();
         map.printMapArray();
 
@@ -39,13 +45,8 @@ public class Main
         TextRPG game = new TextRPG();
         JFrame window = new JFrame();
         Map map = new Map(window);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(0, 0, 1920 , 1080);
-        window.setTitle("TextRPG");
-        window.getContentPane().add(map);
-        window.setVisible(true);
-        window.setResizable(false);
 
-        updateWindow(game, map);
+
+        updateWindow(game, map, window);
     }
 }

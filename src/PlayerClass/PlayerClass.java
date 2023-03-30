@@ -8,6 +8,7 @@ public class PlayerClass{
     private int mana;
     private int strength;
     private int intelligence;
+    private String image;
 
 
 
@@ -26,6 +27,7 @@ public class PlayerClass{
     public int getIntelligence() {
         return intelligence;
     }
+    public String getImage() { return image;}
 
 
 
@@ -43,5 +45,8 @@ public class PlayerClass{
     }
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -21,7 +21,7 @@ public class TextRPG
     public Character currentCharacter;
 
 
-    public PlayerClass chooseCharacter() {
+    public PlayerClass chooseCharacter(Map map) {
         System.out.println("Welcome to TextRPG");
         System.out.println("Choose a character");
         System.out.println("w => warrior");
@@ -39,6 +39,7 @@ public class TextRPG
                 currentClass = warrior;
                 Character warriorCharacter = new Character(nameSelect,1, 10000, warrior.getHealthPoints(), warrior.getMana(), warrior.getIntelligence(), warrior.getStrength());
                 currentCharacter = warriorCharacter;
+                map.setPlayerImg(currentClass.getImage());
                 return warrior;
             case "m":
                 PlayerClassFactory mageFactory = new MageFactory();
@@ -46,6 +47,7 @@ public class TextRPG
                 currentClass = mage;
                 Character mageCharacter = new Character(nameSelect,1, 10000, mage.getHealthPoints(), mage.getMana(), mage.getIntelligence(), mage.getStrength());
                 currentCharacter = mageCharacter;
+                map.setPlayerImg(currentClass.getImage());
                 return mage;
             case "r":
                 PlayerClassFactory rogueFactory = new RogueFactory();
@@ -53,6 +55,7 @@ public class TextRPG
                 currentClass = rogue;
                 Character rogueCharacter = new Character(nameSelect,1, 10000, rogue.getHealthPoints(), rogue.getMana(), rogue.getIntelligence(), rogue.getStrength());
                 currentCharacter = rogueCharacter;
+                map.setPlayerImg(currentClass.getImage());
                 return rogue;
         }
         return null;

@@ -11,6 +11,7 @@ public class MageFactory extends PlayerClassFactory {
         mage.setMana(4);
         mage.setStrength(0);
         mage.setIntelligence(4);
+        mage.setImage("src/images/player/mage_resting_12x16.png");
         return mage;
     }
 }
