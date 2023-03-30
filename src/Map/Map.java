@@ -131,6 +131,7 @@ public class Map extends JComponent {
                 } else if (mapArray[row][col] == 0) {
                     g.drawImage(grass,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
                 } else if (mapArray[row][col] == 8) {
+                    g.drawImage(grass,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
                     g.drawImage(img,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
                 }
             }
