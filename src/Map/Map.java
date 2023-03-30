@@ -10,10 +10,10 @@ import javax.swing.ImageIcon;
 
 public class Map extends JComponent {
 
-    private Image img;
-    private Image map1;
+    private Image playerImage;
     private Image wall;
     private Image grass;
+    private Image tree;
     private int xc = PlayerPos.getX();
     private int yc = PlayerPos.getY();
     private int tileSize = 100;
@@ -25,9 +25,9 @@ public class Map extends JComponent {
     public Map(JFrame window) {
         this.window = window;
         try {
-            map1 = new ImageIcon("src/Map/map1.png").getImage();
             wall = new ImageIcon("src/images/textures/wall 16x16.png").getImage();
             grass = new ImageIcon("src/images/textures/grass_16x16.png").getImage();
+            tree = new ImageIcon("src/images/textures/tree_16x16.png").getImage();
             loadMapArray("src/Map/mapArray.txt");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -35,7 +35,7 @@ public class Map extends JComponent {
     }
 
     public void setPlayerImg(String value) {
-        img = new ImageIcon(value).getImage();
+        playerImage = new ImageIcon(value).getImage();
     }
 
     // Laster inn mapArray.txt og putter det inn i mapArray.
@@ -71,26 +71,25 @@ public class Map extends JComponent {
     }
 
 
-    //Printer mapArray i kosoll
-    public void printMapArray() {
-        for (int row = 0; row < mapArray.length; row++) {
-            for (int col = 0; col < mapArray[row].length; col++) {
-                System.out.print(mapArray[row][col] + " ");
-            }
-            System.out.println();
-        }
-    }
+    //Printer mapArray i konsoll
+    //public void printMapArray() {
+        //for (int row = 0; row < mapArray.length; row++) {
+            //for (int col = 0; col < mapArray[row].length; col++) {
+                //System.out.print(mapArray[row][col] + " ");
+            //}
+            //System.out.println();
+        //}
+    //}
 
     // Lagrer PlayerPos slik at det synes i printMapArray
-    public void savePlayerPos() {
+    public void setPlayerPos() {
         removePreviousPlayerPos();
 
-        int row = (-PlayerPos.getY()/100)+5;
-        int col = (-PlayerPos.getX()/100)+5;
+        int row = PlayerPos.getY()-1;
+        int col = PlayerPos.getX()-1;
         mapArray[row][col] = 8;
 
         System.out.println("row " + row + " col " + col);
-        printMapArray();
     }
 
     // Fjerner forrige posisjon på player dette ved å kjøre denne før man kjører savePlayerPos()
@@ -108,7 +107,7 @@ public class Map extends JComponent {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        if (img != null) {
+        if (playerImage != null) {
             // Regner ut hvor karaktere skal være plassert i window.
             int playerWidth = 10 * 10;
             int playerHeight = 10 * 10;
@@ -118,7 +117,7 @@ public class Map extends JComponent {
             int offsetY = yc - halfWindowHeight;
 
 
-            savePlayerPos();
+            setPlayerPos();
 
         } else {
             System.out.println("Error: Player img not loading");
@@ -127,12 +126,14 @@ public class Map extends JComponent {
         for (int row = 0; row < mapArray.length; row++) {
             for (int col = 0; col < mapArray[row].length; col++) {
                 if (mapArray[row][col] == 1) {
-                    g.drawImage(wall,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
+                    g.drawImage(wall,col*tileSize+PlayerPos.getX() , row*tileSize+PlayerPos.getY(), tileSize, tileSize, null);
                 } else if (mapArray[row][col] == 0) {
-                    g.drawImage(grass,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
+                    g.drawImage(grass,col*tileSize+PlayerPos.getX() , row*tileSize+PlayerPos.getY(), tileSize, tileSize, null);
+                } else if (mapArray[row][col] == 2) {
+                    g.drawImage(tree,col*tileSize+PlayerPos.getX() , row*tileSize+PlayerPos.getY(), tileSize, tileSize, null);
                 } else if (mapArray[row][col] == 8) {
-                    g.drawImage(grass,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
-                    g.drawImage(img,col*tileSize+150+PlayerPos.getX() , row*tileSize+150+PlayerPos.getY(), 100, 100, null);
+                    g.drawImage(grass,col*tileSize+PlayerPos.getX() , row*tileSize+PlayerPos.getY(), tileSize, tileSize, null);
+                    g.drawImage(playerImage,col*tileSize+PlayerPos.getX() , row*tileSize+PlayerPos.getY(), tileSize, tileSize, null);
                 }
             }
         }
@@ -145,4 +146,3 @@ public class Map extends JComponent {
         //}
     }
 }
-

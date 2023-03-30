@@ -3,13 +3,14 @@ package Main;
 import Game.TextRPG;
 import Map.Map;
 import Player.Character;
+import Map.PlayerPos;
 
 import javax.swing.*;
 import java.util.Scanner;
 
 public class Main
 {
-    private static void updateWindow(TextRPG game, Map map, JFrame window) {
+    private static void updateWindow(TextRPG game, Map map, JFrame window, PlayerPos playerPos) {
         game.chooseCharacter(map);
         System.out.println(
                         game.currentCharacter.getName() +  " the " + game.currentClass.getPlayerClassName() + " lvl " + game.currentCharacter.getLvl() + "\n" +
@@ -19,14 +20,15 @@ public class Main
                         "Int " + game.currentCharacter.getIntelligence() + "\n"
         );
 
+        playerPos.setMap(map);
+
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(0, 0, 1920 , 1080);
+        window.setBounds(0, 0, 1100 , 1100);
         window.setTitle("TextRPG");
         window.getContentPane().add(map);
         window.setVisible(true);
         window.setResizable(false);
         game.firstMenu();
-        map.printMapArray();
 
         while (true) {
             game.movePlayer();
@@ -45,8 +47,9 @@ public class Main
         TextRPG game = new TextRPG();
         JFrame window = new JFrame();
         Map map = new Map(window);
+        PlayerPos playerPos = new PlayerPos(map);
 
 
-        updateWindow(game, map, window);
+        updateWindow(game, map, window, playerPos);
     }
 }
