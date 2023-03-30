@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Main
 {
     private static void updateWindow(TextRPG game, Map map) {
+        System.out.println(map.mapArray);
         game.chooseCharacter();
         System.out.println(
                         game.currentCharacter.getName() +  " the " + game.currentClass.getPlayerClassName() + " lvl " + game.currentCharacter.getLvl() + "\n" +

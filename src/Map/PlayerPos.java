@@ -4,10 +4,10 @@ import Game.RandomEvents;
 public class PlayerPos {
     public static int x = 0;
     public static int y = 0;
-    public static int maxX = -7200;
-    public static int maxY = -7200;
-    public static int minX = 500;
-    public static int minY = 500;
+    public static int maxX = 7200;
+    public static int maxY = 7200;
+    public static int minX = maxX-(maxX*2);
+    public static int minY = maxY-(maxY*2);
 
 
     public static int getX() {
@@ -20,9 +20,9 @@ public class PlayerPos {
 
 
     public static void setX(int x) {
-        if (PlayerPos.x < maxX) {
+        if (PlayerPos.x > maxX) {
             PlayerPos.x = maxX;
-        } else if (PlayerPos.x > minX) {
+        } else if (PlayerPos.x < minX) {
             PlayerPos.x = minX;
         } else {
             PlayerPos.x += x;
@@ -30,9 +30,9 @@ public class PlayerPos {
     }
 
     public static void setY(int y) {
-        if (PlayerPos.y < maxY) {
+        if (PlayerPos.y > maxY) {
             PlayerPos.y = maxY;
-        } else if (PlayerPos.y > minY) {
+        } else if (PlayerPos.y < minY) {
             PlayerPos.y = minY;
         } else {
             PlayerPos.y += y;
