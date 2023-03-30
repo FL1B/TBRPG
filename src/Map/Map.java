@@ -12,8 +12,9 @@ public class Map extends JComponent {
     Image map1;
     int xc = PlayerPos.getX();
     int yc = PlayerPos.getY();
-    int tileSize = 110;
-    int scale = 1100;
+    int tileSize = 100;
+    int scale = 1000;
+    int mapSize = 7700;
     JFrame window;
 
     public Map(JFrame window) {
@@ -37,16 +38,16 @@ public class Map extends JComponent {
             int halfWindowHeight = window.getHeight() / 2;
             int offsetX = xc - halfWindowWidth;
             int offsetY = yc - halfWindowHeight;
-            g.drawImage(map1, 0+PlayerPos.getX(),+PlayerPos.getY(), 7700, 7700, null);
+            g.drawImage(map1, +PlayerPos.getX()-mapSize/2,+PlayerPos.getY()-mapSize/2, mapSize, mapSize, null);
 
-            g.drawImage(img, -offsetX, -offsetY, playerWidth, playerHeight, null);
+            g.drawImage(img, -offsetX-60, -offsetY-40, playerWidth, playerHeight, null);
         } else {
             System.out.println("Error: Player img not loading");
         }
 
         for (int i = 0; i < 7; i++) {
             for (int y = 0; y < 7; y++) {
-                g.drawRect(i * scale + PlayerPos.getX(), y * scale + PlayerPos.getY(), tileSize * 10, tileSize * 10);
+                g.drawRect(i * scale + PlayerPos.getX()-mapSize/2, y * scale + PlayerPos.getY()-mapSize/2, tileSize * 10, tileSize * 10);
             }
         }
 
