@@ -2,10 +2,12 @@ package Map;
 import Game.RandomEvents;
 
 public class PlayerPos {
-    public static int x = 5;
-    public static int y = 5;
-    public static int maxX = 8;
-    public static int maxY = 8;
+
+
+    public static int maxX = 99;
+    public static int maxY = 99;
+    public static int x = maxX/2;
+    public static int y = maxY/2;
     public static int minX = maxX-maxX;
     public static int minY = maxY-maxY;
     public static int newX;
@@ -55,7 +57,7 @@ public class PlayerPos {
         char direction = input.charAt(0);
 
         switch (direction) {
-            case 'n':
+            case 's':
                 System.out.println("You walk north.");
                 System.out.println("X " + PlayerPos.x);
                 System.out.println("Y " + PlayerPos.y);
@@ -69,15 +71,15 @@ public class PlayerPos {
 
                         }
                     }
-                    if (newY > maxY && map.mapArray[newY][getX()] == 1) {
-                        setY(-1);
-                    }else {
-                        setY(1);
-                    }
-                    break;
+                }
+                if (newY > maxY-1) {
+                    y = maxY-1;
+                    return;
+                }else {
+                    setY(1);
                 }
                 break;
-            case 's':
+            case 'w':
                 System.out.println("You walk south.");
                 System.out.println("X " + PlayerPos.x);
                 System.out.println("Y " + PlayerPos.y);
@@ -86,7 +88,7 @@ public class PlayerPos {
                 RandomEvents.chestSpawnChance ++;
                 setY(-1);
                 break;
-            case 'e':
+            case 'a':
                 System.out.println("You walk east.");
                 System.out.println("X " + PlayerPos.x);
                 System.out.println("Y " + PlayerPos.y);
@@ -95,7 +97,7 @@ public class PlayerPos {
                 RandomEvents.chestSpawnChance ++;
                 setX(-1);
                 break;
-            case 'w':
+            case 'd':
                 System.out.println("You walk west.");
                 System.out.println("X " + PlayerPos.x);
                 System.out.println("Y " + PlayerPos.y);

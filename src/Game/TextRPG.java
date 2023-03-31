@@ -11,9 +11,11 @@ import PlayerClass.RogueFactory;
 import Player.Character;
 
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Scanner;
 
-public class TextRPG
+public class TextRPG implements KeyListener
 {
     Scanner scanner = new Scanner(System.in);
     boolean askAgain = true;
@@ -68,21 +70,20 @@ public class TextRPG
         System.out.println("Type 's' to move south");
     }
 
-    public void movePlayer() {
+    public void movePlayer(String input) {
         do {
-            String input = scanner.nextLine();
 
             switch (input) {
-                case "n":
+                case "s":
+                    PlayerPos.move(input);
+                    break;
+                case "d":
+                    PlayerPos.move(input);
+                    break;
+                case "a":
                     PlayerPos.move(input);
                     break;
                 case "w":
-                    PlayerPos.move(input);
-                    break;
-                case "e":
-                    PlayerPos.move(input);
-                    break;
-                case "s":
                     PlayerPos.move(input);
                     break;
                 case "h":
@@ -112,5 +113,22 @@ public class TextRPG
         System.out.println("Type 's' to move south.");
         System.out.println("Type 'l' to look around.");
         System.out.println("");
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyChar() == KeyEvent.VK_W) {
+            movePlayer("w");
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
