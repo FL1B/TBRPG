@@ -3,18 +3,12 @@ package Map;
 import Map.PlayerPos;
 import Player.PlayerInv;
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Biomes extends JComponent
 {
 
     public static HashMap<String, String> biomesMap = new HashMap<>();
-
-    public static ArrayList<String> northBiome = new ArrayList<>();
-    public static ArrayList<String> southBiome = new ArrayList<>();
-    public static ArrayList<String> eastBiome = new ArrayList<>();
-    public static ArrayList<String> westBiome = new ArrayList<>();
 
 
     static {
@@ -35,7 +29,7 @@ public class Biomes extends JComponent
 
 
     public static void navigate() {
-        if (PlayerInv.compass == true) {
+        if (PlayerInv.compass) {
             System.out.println("Your current position is:");
             System.out.println(PlayerPos.x + " X");
             System.out.println(PlayerPos.y + " Y");
@@ -55,7 +49,7 @@ public class Biomes extends JComponent
 
 
     public static String getCurrentBiome() {
-        if (PlayerPos.getX() <= 10 && PlayerPos.getY() >= 0 || PlayerPos.getY() <= 10) {
+        if (PlayerPos.getX() > 0 || PlayerPos.getX() < 10 && PlayerPos.getY() > 0 || PlayerPos.getY() < 10) {
             return biomesMap.get("north1");
         } else if (PlayerPos.getX() == 0 && PlayerPos.getY() == 2) {
             return biomesMap.get("north2");

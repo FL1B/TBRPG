@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.plaf.basic.BasicTreeUI.KeyHandler;
 import java.awt.*;
+import java.sql.Connection;
 import java.util.Scanner;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -52,6 +53,7 @@ public class Main
     }
 
     public static void main(String[] args) throws InterruptedException {
+        Connection connection = Game.Database.getConnection();
         TextRPG game = new TextRPG();
         JFrame window = new JFrame();
         Map map = new Map(window);
