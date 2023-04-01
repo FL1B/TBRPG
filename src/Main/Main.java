@@ -5,19 +5,29 @@ import Map.Map;
 import Player.Character;
 import Map.PlayerPos;
 import input.MyKeyHandler;
+import Map.RandomGenerator;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.plaf.basic.BasicTreeUI.KeyHandler;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Main
 {
-    private static void updateWindow(TextRPG game, Map map, JFrame window, PlayerPos playerPos, MyKeyHandler keyHandler) {
+    public static int mapSize = 200;
+    public static int zoom = 5;
+    private static void updateWindow(TextRPG game, Map map, JFrame window, PlayerPos playerPos, MyKeyHandler keyHandler, PrintWriter writer, RandomGenerator randomGenerator) throws FileNotFoundException {
+
+        int[][] mapArray2 = new int[mapSize][mapSize];
+        randomGenerator.generate(mapArray2, writer);
+
         game.chooseCharacter(map);
+
         map.setPlayerPos();
         System.out.println(
                         game.currentCharacter.getName() +  " the " + game.currentClass.getPlayerClassName() + " lvl " + game.currentCharacter.getLvl() + "\n" +
@@ -39,26 +49,20 @@ public class Main
         game.firstMenu();
 
         while (true) {
-
             map.repaint();
         }
     }
 
-    private static String readUserInput() {
-        // read user input from console
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        return input;
-    }
-
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
         TextRPG game = new TextRPG();
         JFrame window = new JFrame();
         Map map = new Map(window);
+        RandomGenerator randomGenerator = new RandomGenerator();
+        PrintWriter writer = new PrintWriter("src/Map/noe.txt");
         PlayerPos playerPos = new PlayerPos(map);
         MyKeyHandler keyHandler = new MyKeyHandler();
 
 
-        updateWindow(game, map, window, playerPos, keyHandler);
+        updateWindow(game, map, window, playerPos, keyHandler, writer, randomGenerator);
     }
 }

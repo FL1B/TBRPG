@@ -3,64 +3,44 @@ package Map;
 import javax.swing.*;
 import java.io.*;
 import java.util.Random;
+import Main.Main;
 
 public class RandomGenerator {
     private static int[][] mapArray;
 
-    public RandomGenerator() {
-        try {
-            loadMapArray("src/Map/mapArray.txt");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+    public static int top = 0;
+    public static int bottom = Main.mapSize-1;
+    public static int left = 0;
+    public static int right = Main.mapSize-1;
 
-    private void loadMapArray(String filename) throws FileNotFoundException, IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
-        int numRows = 100;
-        int numCols = 100;
-        mapArray = new int[numRows][numCols];
+    public static int center = Main.mapSize/2;
+    public static int roadSize = 10;
 
-        String line;
-        int row = 0;
-        while ((line = reader.readLine()) != null) {
-            line = line.trim();
-            if (line.isEmpty()) {
-                continue;
-            }
 
-            String[] tokens = line.split(",");
-            if (tokens.length != numCols) {
-                reader.close();
-                throw new IllegalArgumentException("Line contains too few numbers");
-            }
-
-            for (int col = 0; col < numCols; col++) {
-                mapArray[row][col] = Integer.parseInt(tokens[col]);
-            }
-            row++;
-        }
-        reader.close();
-        if (row < numRows) {
-            throw new IllegalArgumentException("File contains too few lines");
-        }
-    }
-
-    public static void generate(int[][] mapArray2) {
+    public static void generate(int[][] mapArray2, PrintWriter writer) {
         Random rand = new Random();
+        System.out.println("Generating map...");
         for (int row = 0; row < mapArray2.length; row++) {
+            int prevRand = rand.nextInt(3);
             for (int col = 0; col < mapArray2[row].length; col++) {
                 int randomNumber = rand.nextInt(3);
-                if (row == 0 || col == 0 || row == 99 || col == 99) {
+                if (row == top || col == left || row == bottom || col == right) {
                     mapArray2[row][col] = 1;
                 } else if (randomNumber == 0 || randomNumber == 2) {
-                    mapArray2[row][col] = randomNumber;
-                } else {
-                    mapArray2[row][col] = 0;
+                    if (row <= center-roadSize && col <= center-roadSize ||
+                            row >= center+roadSize && col >= center+roadSize ||
+                            row <= center-roadSize && col >= center+roadSize ||
+                            row >= center+roadSize && col <= center-roadSize) {
+                        mapArray2[row][col] = 1;
+                    } else {
+                        mapArray2[row][col] = 0;
+                    }
                 }
             }
+            //printMapArray(mapArray2);
         }
-        printMapArray(mapArray2);
+        System.out.println("Done!");
+        saveMapArray(mapArray2, writer);
     }
     //Printer mapArray i konsoll
     public static void printMapArray(int[][] mapArray2) {
@@ -88,7 +68,7 @@ public class RandomGenerator {
     public static void main(String[] args) throws FileNotFoundException {
         int[][] mapArray2 = new int[100][100];
         PrintWriter writer = new PrintWriter("src/Map/noe.txt");
-        generate(mapArray2);
-        saveMapArray(mapArray2, writer);
+        generate(mapArray2, writer);
+        //saveMapArray(mapArray2, writer);
     }
 }
