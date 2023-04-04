@@ -18,11 +18,11 @@ public class PlayerPos {
     public static int oldTile;
     public static int tileInfo;
     public static Map map;
-    public static int[][] mapArray;
+    public static int[][] mapArrayOriginal;
 
     public void setMap(Map map) {
         this.map = map;
-        this.mapArray = map.mapArray;
+        this.mapArrayOriginal = map.mapArrayOriginal;
     }
 
     public PlayerPos(Map map) {
@@ -65,9 +65,9 @@ public class PlayerPos {
 
         switch (direction) {
             case 's':
-                for (int row = 0; row < map.mapArray.length; row++) {
-                    for (int col = 0; col < map.mapArray[row].length; col++) {
-                        if (map.mapArray[row][col] == 8) {
+                for (int row = 0; row < map.mapArrayOriginal.length; row++) {
+                    for (int col = 0; col < map.mapArrayOriginal[row].length; col++) {
+                        if (map.mapArrayOriginal[row][col] == 8) {
                             newY = row + 1;
 
                         }
@@ -78,7 +78,7 @@ public class PlayerPos {
                 if (newY > maxY-1) {
                     y = maxY-1;
                     return;
-                } else if (mapArray[newY][getX()] == 2) {
+                } else if (mapArrayOriginal[newY][getX()] == 2) {
                     setY(0);
                 } else {
                     setY(1);
@@ -90,9 +90,9 @@ public class PlayerPos {
             case 'w':
                 oldY = y;
 
-                for (int row = 0; row < map.mapArray.length; row++) {
-                    for (int col = 0; col < map.mapArray[row].length; col++) {
-                        if (map.mapArray[row][col] == 8) {
+                for (int row = 0; row < map.mapArrayOriginal.length; row++) {
+                    for (int col = 0; col < map.mapArrayOriginal[row].length; col++) {
+                        if (map.mapArrayOriginal[row][col] == 8) {
                             newY = row - 1;
                         }
                     }
@@ -101,7 +101,7 @@ public class PlayerPos {
                 if (newY < minY+1) {
                     y = minY+1;
                     return;
-                } else if (mapArray[newY][getX()] == 2) {
+                } else if (mapArrayOriginal[newY][getX()] == 2) {
                     setY(0);
                 } else {
                     setY(-1);
@@ -113,12 +113,9 @@ public class PlayerPos {
 
 
             case 'a':
-                RandomEvents.generateEvent();
-                RandomEvents.monsterSpawnChance ++;
-                RandomEvents.chestSpawnChance ++;
-                for (int row = 0; row < map.mapArray.length; row++) {
-                    for (int col = 0; col < map.mapArray[row].length; col++) {
-                        if (map.mapArray[row][col] == 8) {
+                for (int row = 0; row < map.mapArrayOriginal.length; row++) {
+                    for (int col = 0; col < map.mapArrayOriginal[row].length; col++) {
+                        if (map.mapArrayOriginal[row][col] == 8) {
                             newX = col - 1;
                         }
                     }
@@ -126,7 +123,7 @@ public class PlayerPos {
                 if (newX < minX+1) {
                     x = minX+1;
                     return;
-                } else if (mapArray[getY()][newX] == 2) {
+                } else if (mapArrayOriginal[getY()][newX] == 2) {
                     setX(0);
                 } else {
                     setX(-1);
@@ -136,12 +133,9 @@ public class PlayerPos {
                 }
                 break;
             case 'd':
-                RandomEvents.generateEvent();
-                RandomEvents.monsterSpawnChance ++;
-                RandomEvents.chestSpawnChance ++;
-                for (int row = 0; row < map.mapArray.length; row++) {
-                    for (int col = 0; col < map.mapArray[row].length; col++) {
-                        if (map.mapArray[row][col] == 8) {
+                for (int row = 0; row < map.mapArrayOriginal.length; row++) {
+                    for (int col = 0; col < map.mapArrayOriginal[row].length; col++) {
+                        if (map.mapArrayOriginal[row][col] == 8) {
                             newX = col + 1;
                         }
                     }
@@ -149,7 +143,7 @@ public class PlayerPos {
                 if (newX > maxX-1) {
                     x = maxX-1;
                     return;
-                } else if (mapArray[getY()][newX] == 2) {
+                } else if (mapArrayOriginal[getY()][newX] == 2) {
                     setX(0);
                 } else {
                     setX(1);
