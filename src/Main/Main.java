@@ -12,6 +12,7 @@ import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.plaf.basic.BasicTreeUI.KeyHandler;
 import java.awt.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.awt.event.KeyEvent;
@@ -20,11 +21,11 @@ import java.awt.event.KeyListener;
 public class Main
 {
     public static int mapSize = 200;
-    public static int zoom = 5;
-    private static void updateWindow(TextRPG game, Map map, JFrame window, PlayerPos playerPos, MyKeyHandler keyHandler, PrintWriter writer, RandomGenerator randomGenerator) throws FileNotFoundException {
+    public static int zoom = 50;
+    private static void updateWindow(TextRPG game, Map map, JFrame window, PlayerPos playerPos, MyKeyHandler keyHandler, PrintWriter writer, RandomGenerator randomGenerator) throws IOException {
 
-        int[][] mapArray2 = new int[mapSize][mapSize];
-        randomGenerator.generate(mapArray2, writer);
+        int[][] mapArrayOriginal = new int[mapSize][mapSize];
+        randomGenerator.generate(mapArrayOriginal, writer);
 
         game.chooseCharacter(map);
 
@@ -53,12 +54,12 @@ public class Main
         }
     }
 
-    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         TextRPG game = new TextRPG();
         JFrame window = new JFrame();
         Map map = new Map(window);
         RandomGenerator randomGenerator = new RandomGenerator();
-        PrintWriter writer = new PrintWriter("src/Map/noe.txt");
+        PrintWriter writer = new PrintWriter("src/Map/map.txt");
         PlayerPos playerPos = new PlayerPos(map);
         MyKeyHandler keyHandler = new MyKeyHandler();
 

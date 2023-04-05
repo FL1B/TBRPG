@@ -19,6 +19,18 @@ public class Map extends JComponent {
     private Image grass;
     private Image grass2;
     private Image tree;
+    private Image roofTop;
+    private Image roofMid;
+    private Image roofFront;
+    private Image roofTopLeft;
+    private Image roofTopRight;
+    private Image roofLeft;
+    private Image roofRight;
+    private Image roofFrontLeft;
+    private Image roofFrontRight;
+    private Image wallMid;
+    private Image wallLeft;
+    private Image wallRight;
     private int xc = PlayerPos.getX();
     private int yc = PlayerPos.getY();
     private int tileSize = Main.zoom;
@@ -37,6 +49,18 @@ public class Map extends JComponent {
             grass = new ImageIcon("src/images/textures/grass_16x16.png").getImage();
             grass2 = new ImageIcon("src/images/textures/grass2_16x16.png").getImage();
             tree = new ImageIcon("src/images/textures/tree_16x16.png").getImage();
+            roofTop = new ImageIcon("src/images/textures/building/roof_top.png").getImage();
+            roofMid = new ImageIcon("src/images/textures/building/roof_mid.png").getImage();
+            roofFront = new ImageIcon("src/images/textures/building/roof_front.png").getImage();
+            roofLeft = new ImageIcon("src/images/textures/building/roof_left.png").getImage();
+            roofRight = new ImageIcon("src/images/textures/building/roof_right.png").getImage();
+            roofTopLeft = new ImageIcon("src/images/textures/building/roof_top_left.png").getImage();
+            roofTopRight = new ImageIcon("src/images/textures/building/roof_top_right.png").getImage();
+            roofFrontLeft = new ImageIcon("src/images/textures/building/roof_front_left.png").getImage();
+            roofFrontRight= new ImageIcon("src/images/textures/building/roof_front_right.png").getImage();
+            wallMid = new ImageIcon("src/images/textures/building/wall_mid.png").getImage();
+            wallLeft = new ImageIcon("src/images/textures/building/wall_front_left.png").getImage();
+            wallRight = new ImageIcon("src/images/textures/building/wall_front_right.png").getImage();
             loadMapArray("src/Map/map.txt", "src/Map/map_copy.txt");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -147,7 +171,32 @@ public class Map extends JComponent {
                     g.drawImage(grass2, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
                 } else if (mapArrayOriginal[row][col] == 2) {
                     g.drawImage(tree, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                } else if (mapArrayClone[row][col] == 10) {
+                    g.drawImage(roofTop, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                } else if (mapArrayClone[row][col] == 11) {
+                    g.drawImage(roofMid, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                } else if (mapArrayClone[row][col] == 12) {
+                    g.drawImage(roofFront, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                } else if (mapArrayClone[row][col] == 13) {
+                    g.drawImage(wallMid, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 14) {
+                    g.drawImage(roofTopLeft, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);//######
+                }else if (mapArrayClone[row][col] == 15) {
+                    g.drawImage(roofLeft, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 16) {
+                    g.drawImage(roofFrontLeft, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 17) {
+                    g.drawImage(wallLeft, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 18) {
+                    g.drawImage(roofTopRight, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 19) {
+                    g.drawImage(roofRight, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 20) {
+                    g.drawImage(roofFrontRight, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 21) {
+                    g.drawImage(wallRight, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
                 }
+
             }
         }
     }

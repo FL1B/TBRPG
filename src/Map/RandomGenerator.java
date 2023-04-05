@@ -45,8 +45,133 @@ public class RandomGenerator {
             //printMapArray(mapArrayOriginal);
         }
         System.out.println("Done!");
+        generateCity(mapArrayOriginal, writer);
+    }
+
+    public static void generateCity(int[][] mapArrayOriginal, PrintWriter writer) throws IOException {
+        System.out.println("Generating city...");
+        for (int row = 0; row < mapArrayOriginal.length; row++) {
+            for (int col = 0; col < mapArrayOriginal[row].length; col++) {
+
+//#######################################Horisontal##################################
+                    // ################## Roof_top ##################################
+                if (row == center-roadSize && col <= center-roadSize || // Left_top
+                        row == center-roadSize && col >= center+roadSize || //Right_top
+                        row == center+roadSize-5 && col <= center-roadSize || //Left_bottom
+                        row == center+roadSize-5 && col >= center+roadSize) { //Right_bottom
+                    if (col == 0 || col == right) { //Barri
+                        mapArrayOriginal[row][col] = 1;
+                    } else if (col == 1 || col == center+roadSize) { //Roof_top_left
+                        mapArrayOriginal[row][col] = 14;
+                    } else if (col == center-roadSize || col == right-1) { //Roof_top_right
+                        mapArrayOriginal[row][col] = 18;
+                    } else { // Roof_top_mid
+                        mapArrayOriginal[row][col] = 10;
+                    }
+                    // ################## Roof_mid ##################################
+                } else if (row == center-roadSize+1 && col <= center-roadSize || // Left_top
+                            row == center-roadSize+1 && col >= center+roadSize || // Right_top
+                            row == center+roadSize-4 && col <= center-roadSize ||// Left_top
+                            row == center+roadSize-4 && col >= center+roadSize) { // Right_bottom
+                    if (col == 0 || col == right) { //Barri
+                        mapArrayOriginal[row][col] = 1;
+                    } else if (col == 1 || col == center+roadSize) { //Roof_left
+                        mapArrayOriginal[row][col] = 15;
+                    } else if (col == center-roadSize || col == right-1) { //Roof_right
+                        mapArrayOriginal[row][col] = 19;
+                    } else { //Roof_mid
+                        mapArrayOriginal[row][col] = 11;
+                    }
+                    // ################## Roof_front ##################################
+                } else if (row == center-roadSize+2 && col <= center-roadSize || // Left_top
+                            row == center-roadSize+2 && col >= center+roadSize || // Right_top
+                            row == center+roadSize-3 && col <= center-roadSize || // Left_bottom
+                            row == center+roadSize-3 && col >= center+roadSize) { // Right_bottom
+                    if (col == 0 || col == right) { //Barri
+                        mapArrayOriginal[row][col] = 1;
+                    } else if (col == 1 || col == center+roadSize) { //Roof_front_left
+                        mapArrayOriginal[row][col] = 16;
+                    } else if (col == center-roadSize || col == right-1) { //Roof_front_right
+                        mapArrayOriginal[row][col] = 20;
+                    } else { //Roof_front
+                        mapArrayOriginal[row][col] = 12;
+                    }
+                    // ################## Wall ##################################
+                } else if (row >= center-roadSize+3 && col <= center-roadSize && row <= center-roadSize+5 || // Left_top
+                            row >= center+roadSize-2 && col <= center-roadSize && row <= center+roadSize || // Left_bottom
+                            row >= center-roadSize+3 && col >= center+roadSize && row <= center-roadSize+5 || // Right_top
+                        row >= center+roadSize-2 && col >= center+roadSize && row <= center+roadSize ) {
+                    if (col == 0 || col == right) { //Barri
+                        mapArrayOriginal[row][col] = 1;
+                    } else if (col == 1 || col == center+roadSize) { //Wall_left
+                        mapArrayOriginal[row][col] = 17;
+                    } else if (col == center-roadSize || col == right-1) { //Wall_right
+                        mapArrayOriginal[row][col] = 21;
+                    } else { //Wall_mid
+                        mapArrayOriginal[row][col] = 13;
+                    }
+////#######################################Vertical##################################
+                    // ################## Roof_left ##################################
+                } else if (col == center-roadSize+1 && row <= center-roadSize-1 || // Left_top
+                            col == center+roadSize-3 && row <= center-roadSize-1 || // Right_top
+                            col == center-roadSize+1 && row >= center+roadSize+1 || // Left_bottom
+                            col == center+roadSize-3 && row >= center+roadSize+1) { //Right_bottom
+                    if (row == 0 || row == bottom){
+                        mapArrayOriginal[row][col] = 1; // Barri
+                    } else if (row == center-roadSize-1 || row == center+roadSize-2 || row == bottom-1) {
+                        mapArrayOriginal[row][col] = 16; // Roof_front_left
+                    } else if (row == 1 || row == center+roadSize+1 || row == top+1) {
+                        mapArrayOriginal[row][col] = 14; //Roof_top_left
+                    }else {
+                        mapArrayOriginal[row][col] = 15; // Roof_left
+                    }
+                    // ################## Roof_mid ##################################
+                } else if (col == center-roadSize+2 && row <= center-roadSize-1 || // Left_top
+                            col == center+roadSize-2 && row <= center-roadSize-1 || // Right_top
+                            col == center-roadSize+2 && row >= center+roadSize+1 || // Left_bottom
+                            col == center+roadSize-2 && row >= center+roadSize+1) { //Right_bottom
+                    if (row == 0 || row == bottom){
+                        mapArrayOriginal[row][col] = 1; // Barri
+                    } else if (row == center-roadSize-1 || row == bottom-1) {
+                        mapArrayOriginal[row][col] = 12; // Roof_front_mid
+                    } else if (row == center+roadSize+1 || row == top+1) {
+                        mapArrayOriginal[row][col] = 10; //Roof_top_mid
+                    } else {
+                        mapArrayOriginal[row][col] = 11; // Roof_mid
+                    }
+                    // ################## Roof_right ##################################
+                } else if (col == center-roadSize+3 && row <= center-roadSize-1 ||
+                            col == center+roadSize-1 && row <= center-roadSize-1 ||
+                            col == center-roadSize+3 && row >= center+roadSize+1 ||
+                            col == center+roadSize-1 && row >= center+roadSize+1) {
+                    if (row == 0 || row == bottom){
+                        mapArrayOriginal[row][col] = 1; // Barri
+                    } else if (row == center-roadSize-1 || row == bottom-1) {
+                        mapArrayOriginal[row][col] = 20; // Roof_front_right
+                    } else if (row == center+roadSize+1 || row == top+1) {
+                        mapArrayOriginal[row][col] = 18;
+                    } else {
+                        mapArrayOriginal[row][col] = 19; // Roof_right
+                    }
+                    // ################## Wall ##################################
+                } else if (col >= center-roadSize+1 && col <= center-roadSize+3 && row >= center-roadSize-1 && row <= center-roadSize+2 ||
+                            col <= center+roadSize-1 && col >= center+roadSize-3 && row >= center-roadSize-1 && row <= center-roadSize+2) {
+                    if (col == center-roadSize+1 || col == center+roadSize-3){
+                        mapArrayOriginal[row][col] = 17; //Wall_left
+                    } else if (col == center-roadSize+3 || col == center+roadSize-1) {
+                        mapArrayOriginal[row][col] = 21; // Wall_right
+                    } else {
+                        mapArrayOriginal[row][col] = 13; // Wall_mid
+                    }
+                }
+            }
+        }
+        printMapArray(mapArrayOriginal);
+        System.out.println("Done!");
         saveMapArray(mapArrayOriginal, writer);
     }
+
+
     //Printer mapArray i konsoll
     public static void printMapArray(int[][] mapArrayOriginal) {
         for (int row = 0; row < mapArrayOriginal.length; row++) {
@@ -56,6 +181,7 @@ public class RandomGenerator {
             System.out.println();
         }
     }
+
 
     public static void saveMapArray(int[][] mapArrayOriginal, PrintWriter writer) throws IOException {
         for (int row = 0; row < mapArrayOriginal.length; row++) {
@@ -104,3 +230,8 @@ public class RandomGenerator {
 
     }
 }
+
+//||
+//                            row >= center+roadSize && col >= center+roadSize ||
+//                            row <= center-roadSize && col >= center+roadSize ||
+//                            row >= center+roadSize && col <= center-roadSize) {
