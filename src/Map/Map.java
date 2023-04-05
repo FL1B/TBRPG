@@ -29,8 +29,11 @@ public class Map extends JComponent {
     private Image roofFrontLeft;
     private Image roofFrontRight;
     private Image wallMid;
+    private Image wallMidOn;
+    private Image wallMidOff;
     private Image wallLeft;
     private Image wallRight;
+    private Image door;
     private int xc = PlayerPos.getX();
     private int yc = PlayerPos.getY();
     private int tileSize = Main.zoom;
@@ -59,8 +62,11 @@ public class Map extends JComponent {
             roofFrontLeft = new ImageIcon("src/images/textures/building/roof_front_left.png").getImage();
             roofFrontRight= new ImageIcon("src/images/textures/building/roof_front_right.png").getImage();
             wallMid = new ImageIcon("src/images/textures/building/wall_mid.png").getImage();
+            wallMidOn = new ImageIcon("src/images/textures/building/wall_mid_on.png").getImage();
+            wallMidOff = new ImageIcon("src/images/textures/building/wall_mid_off.png").getImage();
             wallLeft = new ImageIcon("src/images/textures/building/wall_front_left.png").getImage();
             wallRight = new ImageIcon("src/images/textures/building/wall_front_right.png").getImage();
+            door = new ImageIcon("src/images/textures/building/wall_door.png").getImage();
             loadMapArray("src/Map/map.txt", "src/Map/map_copy.txt");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -195,6 +201,12 @@ public class Map extends JComponent {
                     g.drawImage(roofFrontRight, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
                 }else if (mapArrayClone[row][col] == 21) {
                     g.drawImage(wallRight, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 22) {
+                    g.drawImage(door, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 23) {
+                    g.drawImage(wallMidOn, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
+                }else if (mapArrayClone[row][col] == 24) {
+                    g.drawImage(wallMidOff, col * tileSize + offsetX, row * tileSize + offsetY, tileSize, tileSize, null);
                 }
 
             }

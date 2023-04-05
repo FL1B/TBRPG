@@ -49,10 +49,11 @@ public class RandomGenerator {
     }
 
     public static void generateCity(int[][] mapArrayOriginal, PrintWriter writer) throws IOException {
+        Random rand = new Random();
         System.out.println("Generating city...");
         for (int row = 0; row < mapArrayOriginal.length; row++) {
             for (int col = 0; col < mapArrayOriginal[row].length; col++) {
-
+                int randomNumber = rand.nextInt(12);
 //#######################################Horisontal##################################
                     // ################## Roof_top ##################################
                 if (row == center-roadSize && col <= center-roadSize || // Left_top
@@ -107,8 +108,17 @@ public class RandomGenerator {
                         mapArrayOriginal[row][col] = 17;
                     } else if (col == center-roadSize || col == right-1) { //Wall_right
                         mapArrayOriginal[row][col] = 21;
+                    } else if (row == center-roadSize+5 && randomNumber == 0 || row == center+roadSize && randomNumber == 1) {
+                        mapArrayOriginal[row][col] = 22;
                     } else { //Wall_mid
-                        mapArrayOriginal[row][col] = 13;
+                        if (randomNumber == 3 || randomNumber == 4) {
+                            mapArrayOriginal[row][col] = 23;
+                        } else if (randomNumber == 5 || randomNumber == 6) {
+                            mapArrayOriginal[row][col] = 24;
+                        } else {
+                            mapArrayOriginal[row][col] = 13;
+                        }
+
                     }
 ////#######################################Vertical##################################
                     // ################## Roof_left ##################################
