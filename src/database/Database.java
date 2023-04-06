@@ -1,11 +1,12 @@
-package Game;
+package database;
 
 import java.sql.*;
 
+
 public class Database {
-    private static final String url = "jdbc:mysql://localhost:3306/TBRPG";
+    private static final String url = "jdbc:mysql://localhost:3306/trpg";
     private static final String username = "root";
-    private static final String password = "Rfgqxscllboxu";
+    private static final String password = "FAf0nXn9";
     public static Connection connection = null;
 
     public static Connection getConnection() {
@@ -30,5 +31,10 @@ public class Database {
                 e.printStackTrace();
             }
         }
+    }
+    public static void main(String[] args) throws SQLException {
+        getConnection();
+        Drops.addDropToArrayFromConsole(url,username,password);
+        closeConnection();
     }
 }

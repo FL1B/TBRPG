@@ -2,21 +2,14 @@ package Main;
 
 import Game.TextRPG;
 import Map.Map;
-import Player.Character;
 import Map.PlayerPos;
+import database.Database;
 import input.MyKeyHandler;
 import Map.RandomGenerator;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicTreeUI;
-import javax.swing.plaf.basic.BasicTreeUI.KeyHandler;
-import java.awt.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Main
 {
@@ -26,6 +19,8 @@ public class Main
 
         int[][] mapArrayOriginal = new int[mapSize][mapSize];
         randomGenerator.generate(mapArrayOriginal, writer);
+
+        Database.getConnection();
 
         game.chooseCharacter(map);
 
