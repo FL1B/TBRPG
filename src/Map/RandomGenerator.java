@@ -176,11 +176,70 @@ public class RandomGenerator {
                 }
             }
         }
+        System.out.println("Done!");
+        randomizeCity(mapArrayOriginal, writer);
+    }
+
+    public static void randomizeCity(int[][] mapArrayOriginal, PrintWriter writer) throws IOException {
+        Random rand = new Random();
+        System.out.println("Randomizing city...");
+        for (int row = 0; row < mapArrayOriginal.length; row++) {
+            for (int col = 0; col < mapArrayOriginal[row].length; col++) {
+                int randomNumber = rand.nextInt(3);
+                if (randomNumber == 0 && mapArrayOriginal[row][col] == 10 && !(row <= center-roadSize-1 || row >= center+roadSize)) {
+                    if (!(row >= bottom-5) && !(row <= top+5) && !(col <= left + 5) && !(col >= right-5)) {
+
+                        //setter midterste til gress
+                        mapArrayOriginal[row][col] = 0;
+                        mapArrayOriginal[row + 1][col] = 0;
+                        mapArrayOriginal[row + 2][col] = 0;
+                        mapArrayOriginal[row + 3][col] = 0;
+                        mapArrayOriginal[row + 4][col] = 0;
+                        mapArrayOriginal[row + 5][col] = 0;
+
+                        //setter venstre side bygg
+                        mapArrayOriginal[row][col-1] = 18;
+                        mapArrayOriginal[row + 1][col-1] = 19;
+                        mapArrayOriginal[row + 2][col-1] = 20;
+                        mapArrayOriginal[row + 3][col-1] = 21;
+                        mapArrayOriginal[row + 4][col-1] = 21;
+                        mapArrayOriginal[row + 5][col-1] = 21;
+
+                        //setter høyre side bygg
+                        mapArrayOriginal[row][col+1] = 14;
+                        mapArrayOriginal[row + 1][col+1] = 15;
+                        mapArrayOriginal[row + 2][col+1] = 16;
+                        mapArrayOriginal[row + 3][col+1] = 17;
+                        mapArrayOriginal[row + 4][col+1] = 17;
+                        mapArrayOriginal[row + 5][col+1] = 17;
+
+                    }
+                } else if (randomNumber == 0 && mapArrayOriginal[row][col] == 15 && (row <= center-roadSize-1 || row >= center+roadSize)) {
+                    if (!(row >= bottom-5) && !(row <= top+5) && !(col <= left + 5) && !(col >= right-5)) {
+
+                        //setter midterste til gress
+                        mapArrayOriginal[row][col] = 0;
+                        mapArrayOriginal[row][col+1] = 0;
+                        mapArrayOriginal[row][col+2] = 0;
+
+                        //setter nedre side bygg
+                        mapArrayOriginal[row-1][col] = 16;
+                        mapArrayOriginal[row-1][col+1] = 12;
+                        mapArrayOriginal[row-1][col+2] = 20;
+
+                        //setter øvre side bygg
+                        mapArrayOriginal[row+1][col] = 14;
+                        mapArrayOriginal[row+1][col+1] = 10;
+                        mapArrayOriginal[row+1][col+2] = 18;
+
+                    }
+                }
+            }
+        }
         printMapArray(mapArrayOriginal);
         System.out.println("Done!");
         saveMapArray(mapArrayOriginal, writer);
     }
-
 
     //Printer mapArray i konsoll
     public static void printMapArray(int[][] mapArrayOriginal) {

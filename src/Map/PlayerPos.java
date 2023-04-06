@@ -2,6 +2,8 @@ package Map;
 import Game.RandomEvents;
 import Main.Main;
 
+import java.util.stream.IntStream;
+
 public class PlayerPos {
 
 
@@ -19,6 +21,7 @@ public class PlayerPos {
     public static int tileInfo;
     public static Map map;
     public static int[][] mapArrayOriginal;
+    public static int[] blockedTiles = {2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24};
 
     public void setMap(Map map) {
         this.map = map;
@@ -78,7 +81,7 @@ public class PlayerPos {
                 if (newY > maxY-1) {
                     y = maxY-1;
                     return;
-                } else if (mapArrayOriginal[newY][getX()] == 2) {
+                } else if (IntStream.of(blockedTiles).anyMatch(i -> mapArrayOriginal[newY][getX()] == i)) {
                     setY(0);
                 } else {
                     setY(1);
@@ -101,7 +104,7 @@ public class PlayerPos {
                 if (newY < minY+1) {
                     y = minY+1;
                     return;
-                } else if (mapArrayOriginal[newY][getX()] == 2) {
+                } else if (IntStream.of(blockedTiles).anyMatch(i -> mapArrayOriginal[newY][getX()] == i)) {
                     setY(0);
                 } else {
                     setY(-1);
@@ -123,7 +126,7 @@ public class PlayerPos {
                 if (newX < minX+1) {
                     x = minX+1;
                     return;
-                } else if (mapArrayOriginal[getY()][newX] == 2) {
+                } else if (IntStream.of(blockedTiles).anyMatch(i -> mapArrayOriginal[getY()][newX] == i)) {
                     setX(0);
                 } else {
                     setX(-1);
@@ -143,7 +146,7 @@ public class PlayerPos {
                 if (newX > maxX-1) {
                     x = maxX-1;
                     return;
-                } else if (mapArrayOriginal[getY()][newX] == 2) {
+                } else if (IntStream.of(blockedTiles).anyMatch(i -> mapArrayOriginal[getY()][newX] == i)) {
                     setX(0);
                 } else {
                     setX(1);

@@ -21,7 +21,7 @@ import java.awt.event.KeyListener;
 public class Main
 {
     public static int mapSize = 200;
-    public static int zoom = 65;
+    public static int zoom = 35;
     private static void updateWindow(TextRPG game, Map map, JFrame window, PlayerPos playerPos, MyKeyHandler keyHandler, PrintWriter writer, RandomGenerator randomGenerator) throws IOException {
 
         int[][] mapArrayOriginal = new int[mapSize][mapSize];
